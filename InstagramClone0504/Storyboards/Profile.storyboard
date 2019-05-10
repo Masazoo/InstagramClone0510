@@ -177,7 +177,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="2rb-32-jF2"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Profile" id="dqx-cX-o6U"/>
+                    <navigationItem key="navigationItem" title="Profile" id="dqx-cX-o6U">
+                        <barButtonItem key="rightBarButtonItem" image="discover" id="mrW-tF-jum">
+                            <connections>
+                                <segue destination="8Ue-21-mmK" kind="show" identifier="ProfileToPeopleSegue" id="yhd-k7-ohg"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="3RV-cn-wbL" id="SHj-Qd-jjX"/>
                     </connections>
@@ -185,6 +191,82 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HvA-ln-ieY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3008.8000000000002" y="2001.9490254872564"/>
+        </scene>
+        <!--People View Controller-->
+        <scene sceneID="0L4-Np-eBd">
+            <objects>
+                <viewController id="8Ue-21-mmK" customClass="PeopleViewController" customModule="InstagramClone0504" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="XKk-fv-XGL">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="V5T-Bh-seR">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PeopleTableViewCell" rowHeight="81" id="ke9-Zs-NOd" customClass="PeopleTableViewCell" customModule="InstagramClone0504" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="81"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ke9-Zs-NOd" id="XR2-mR-dVH">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="80.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholderImg" translatesAutoresizingMaskIntoConstraints="NO" id="0Hu-na-4wS">
+                                                    <rect key="frame" x="15" y="10" width="60" height="60"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="60" id="gzu-32-f4g"/>
+                                                        <constraint firstAttribute="width" constant="60" id="sID-RA-hUO"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3cw-f7-lAw">
+                                                    <rect key="frame" x="91" y="31.5" width="69" height="17"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yQD-NH-8lm">
+                                                    <rect key="frame" x="268" y="25" width="92" height="30"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <state key="normal" title="フォローする">
+                                                        <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </state>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="0Hu-na-4wS" firstAttribute="leading" secondItem="XR2-mR-dVH" secondAttribute="leading" constant="15" id="PC0-Sf-Zl9"/>
+                                                <constraint firstAttribute="trailing" secondItem="yQD-NH-8lm" secondAttribute="trailing" constant="15" id="Quj-xr-yrd"/>
+                                                <constraint firstItem="3cw-f7-lAw" firstAttribute="leading" secondItem="0Hu-na-4wS" secondAttribute="trailing" constant="16" id="RcU-lF-7Jz"/>
+                                                <constraint firstAttribute="bottom" secondItem="0Hu-na-4wS" secondAttribute="bottom" constant="10.5" id="UKj-EF-gmw"/>
+                                                <constraint firstItem="3cw-f7-lAw" firstAttribute="centerY" secondItem="0Hu-na-4wS" secondAttribute="centerY" id="qND-ti-OwB"/>
+                                                <constraint firstItem="0Hu-na-4wS" firstAttribute="top" secondItem="XR2-mR-dVH" secondAttribute="top" constant="10" id="tEr-bU-jWc"/>
+                                                <constraint firstItem="yQD-NH-8lm" firstAttribute="centerY" secondItem="0Hu-na-4wS" secondAttribute="centerY" id="tax-Xq-aP3"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="followBtn" destination="yQD-NH-8lm" id="wnV-iN-szt"/>
+                                            <outlet property="nameLabel" destination="3cw-f7-lAw" id="b5S-em-3Li"/>
+                                            <outlet property="profileImageView" destination="0Hu-na-4wS" id="AIc-YR-KVI"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="V5T-Bh-seR" firstAttribute="leading" secondItem="aFF-bg-mVP" secondAttribute="leading" id="AHN-l3-RYw"/>
+                            <constraint firstItem="V5T-Bh-seR" firstAttribute="top" secondItem="XKk-fv-XGL" secondAttribute="top" id="JAU-rS-vgE"/>
+                            <constraint firstItem="aFF-bg-mVP" firstAttribute="trailing" secondItem="V5T-Bh-seR" secondAttribute="trailing" id="L0o-J7-2zG"/>
+                            <constraint firstItem="aFF-bg-mVP" firstAttribute="bottom" secondItem="V5T-Bh-seR" secondAttribute="bottom" id="cTK-mn-5SU"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="aFF-bg-mVP"/>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="V5T-Bh-seR" id="Cs0-o6-MmE"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sOq-WN-shp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3964" y="2001.9490254872564"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ydU-2N-egX">
@@ -211,6 +293,7 @@
     <resources>
         <image name="Profile" width="20" height="21"/>
         <image name="Profile_Selected" width="20" height="21"/>
+        <image name="discover" width="22" height="22"/>
         <image name="placeholderImg" width="225" height="225"/>
     </resources>
 </document>

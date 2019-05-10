@@ -12,14 +12,17 @@ class UserModel {
     var email: String?
     var username: String?
     var profileImageURL: String?
+    var uid: String?
+    var isFollowing: Bool?
     
 }
 extension UserModel {
-    static func transformUser(dict: [String: Any]) -> UserModel {
+    static func transformUser(dict: [String: Any], uid: String) -> UserModel {
         let user = UserModel()
         user.email = dict["email"] as? String
         user.username = dict["username"] as? String
         user.profileImageURL = dict["profileImageURL"] as? String
+        user.uid = uid
         
         return user
     }

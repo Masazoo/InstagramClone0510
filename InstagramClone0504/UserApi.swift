@@ -24,7 +24,7 @@ class UserApi {
     func observeUsers(completion: @escaping (UserModel) -> Void) {
         REF_USERS.observe(.childAdded, with: { (DataSnapshot) in
             if let dict = DataSnapshot.value as? [String: Any] {
-                let user = UserModel.transformUser(dict: dict)
+                let user = UserModel.transformUser(dict: dict, uid: DataSnapshot.key)
                 completion(user)
             }
         })
@@ -33,7 +33,7 @@ class UserApi {
     func observeUser(uid: String, completion: @escaping (UserModel) -> Void) {
         REF_USERS.child(uid).observeSingleEvent(of: .value, with: { (DataSnapshot) in
             if let dict = DataSnapshot.value as? [String: Any] {
-                let user = UserModel.transformUser(dict: dict)
+                let user = UserModel.transformUser(dict: dict, uid: DataSnapshot.key)
                 completion(user)
             }
         })
@@ -46,7 +46,7 @@ class UserApi {
         let currentUserId = currentUser.uid
         REF_USERS.child(currentUserId).observeSingleEvent(of: .value, with: { (DataSnapshot) in
             if let dict = DataSnapshot.value as? [String: Any] {
-                let user = UserModel.transformUser(dict: dict)
+                let user = UserModel.transformUser(dict: dict, uid: DataSnapshot.key)
                 completion(user)
             }
         })
