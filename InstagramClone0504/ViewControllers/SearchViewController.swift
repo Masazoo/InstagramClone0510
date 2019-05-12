@@ -1,5 +1,5 @@
 //
-//  PeopleViewController.swift
+//  SearchViewController.swift
 //  InstagramClone0504
 //
 //  Created by mt on 2019/05/10.
@@ -8,7 +8,8 @@
 
 import UIKit
 
-class PeopleViewController: UIViewController {
+class SearchViewController: UIViewController {
+
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -34,17 +35,18 @@ class PeopleViewController: UIViewController {
         }
     }
     
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "PeopleToProfileUserSegue" {
+        if segue.identifier == "SearchToProfileUserSegue" {
             let userId = sender as! String
             let profileUserVC = segue.destination as! ProfileUserViewController
             profileUserVC.userId = userId
-            profileUserVC.delegate = self
         }
     }
-
+    
+    
 }
-extension PeopleViewController: UITableViewDataSource {
+extension SearchViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return users.count
     }
@@ -57,18 +59,9 @@ extension PeopleViewController: UITableViewDataSource {
         return cell
     }
 }
-extension PeopleViewController: PeopleTableViewCellDelegate {
+extension SearchViewController: PeopleTableViewCellDelegate {
     func goToProfileUserVC(userId: String) {
-        self.performSegue(withIdentifier: "PeopleToProfileUserSegue", sender: userId)
+        self.performSegue(withIdentifier: "SearchToProfileUserSegue", sender: userId)
     }
 }
-extension PeopleViewController: HeaderCollectionReusableViewDelegate {
-    func updateFollowBtn(user: UserModel) {
-        for u in self.users {
-            if u.uid == user.uid {
-                u.isFollowing = user.isFollowing
-                tableView.reloadData()
-            }
-        }
-    }
-}
+

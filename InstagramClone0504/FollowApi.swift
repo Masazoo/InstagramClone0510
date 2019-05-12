@@ -36,4 +36,21 @@ class FollowApi {
             }
         })
     }
+    
+    func fetchFollowingCount(userId: String, completion: @escaping (Int) -> Void) {
+        REF_FOLLOWING.child(userId).observe(.value, with: { (DataSnapshot) in
+            let count = Int(DataSnapshot.childrenCount)
+            completion(count)
+        })
+    }
+    
+    func fetchFollowerCount(userId: String, completion: @escaping (Int) -> Void) {
+        REF_FOLLOWERS.child(userId).observe(.value, with: { (DataSnapshot) in
+            let count = Int(DataSnapshot.childrenCount)
+            completion(count)
+        })
+    }
+    
+    
+    
 }
