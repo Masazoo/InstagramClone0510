@@ -12,7 +12,7 @@
         <!--Home-->
         <scene sceneID="js8-2h-60m">
             <objects>
-                <viewController id="97W-ON-U6C" customClass="HomeViewController" customModule="InstagramClone0504" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HomeViewController" id="97W-ON-U6C" customClass="HomeViewController" customModule="InstagramClone0504" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eQ6-IY-vnr">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -137,11 +137,20 @@
                     <connections>
                         <outlet property="tableView" destination="K3d-iS-kXX" id="gjN-FY-dT4"/>
                         <segue destination="BGw-2f-H2g" kind="show" identifier="HomeToCommentSegue" id="xcx-VK-46V"/>
+                        <segue destination="OAA-89-0o1" kind="show" identifier="HomeToProfileUserSegue" id="upr-nr-wrN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UtU-yA-UPw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3008.8000000000002" y="-1026.8365817091455"/>
+        </scene>
+        <!--ProfileUserViewController-->
+        <scene sceneID="ZHK-5I-oOy">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Profile" referencedIdentifier="ProfileUserViewController" id="OAA-89-0o1" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KzZ-QP-FHa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3931" y="-1784"/>
         </scene>
         <!--Comment View Controller-->
         <scene sceneID="qBp-5P-k10">
@@ -252,6 +261,7 @@
                         <outlet property="constraintToButtom" destination="LLq-mX-2f6" id="LUd-01-2Qi"/>
                         <outlet property="sendBtn" destination="uxL-hA-Swm" id="b1l-x2-M7w"/>
                         <outlet property="tableView" destination="Umf-eZ-5lG" id="nZZ-jv-NAF"/>
+                        <segue destination="OAA-89-0o1" kind="show" identifier="commentToProfileSegue" id="A2h-H0-kBA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="enl-UV-BAw" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -289,4 +299,7 @@
         <image name="placeholderImg" width="225" height="225"/>
         <image name="share" width="37" height="41"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="A2h-H0-kBA"/>
+    </inferredMetricsTieBreakers>
 </document>

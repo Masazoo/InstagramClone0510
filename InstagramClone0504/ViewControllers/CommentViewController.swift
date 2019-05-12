@@ -118,6 +118,15 @@ class CommentViewController: UIViewController {
         sendBtn.isEnabled = false
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "commentToProfileSegue" {
+            let userId = sender as! String
+            let profileUserVC = segue.destination as! ProfileUserViewController
+            profileUserVC.userId = userId
+        }
+    }
+    
     
 }
 extension CommentViewController: UITableViewDataSource, UITableViewDelegate {
@@ -131,8 +140,12 @@ extension CommentViewController: UITableViewDataSource, UITableViewDelegate {
         let user = users[indexPath.row]
         cell.comment = comment
         cell.user = user
+        cell.delegate = self
         return cell
     }
-    
-    
+}
+extension CommentViewController: CommentTableViewCellDelegate {
+    func goToProfileUserVC(userId: String) {
+        self.performSegue(withIdentifier: "commentToProfileSegue", sender: userId)
+    }
 }

@@ -10,6 +10,7 @@ import UIKit
 import SDWebImage
 protocol HomeTableViewCellDelegate {
     func goToCommentVC(postId: String)
+    func goToProfileUserVC(userId: String)
 }
 
 class HomeTableViewCell: UITableViewCell {
@@ -84,10 +85,17 @@ class HomeTableViewCell: UITableViewCell {
         let tapGestureForLikeImageView = UITapGestureRecognizer(target: self, action: #selector(self.likeImageView_TouchUpInside))
         likeImageView.addGestureRecognizer(tapGestureForLikeImageView)
         likeImageView.isUserInteractionEnabled = true
+        let tapGestureForNameLabel = UITapGestureRecognizer(target: self, action: #selector(self.handleSelectNameLabel))
+        nameLabel.addGestureRecognizer(tapGestureForNameLabel)
+        nameLabel.isUserInteractionEnabled = true
     }
     
     func handleSelectCommentImageView() {
         delegate?.goToCommentVC(postId: post!.postId!)
+    }
+    
+    func handleSelectNameLabel() {
+        delegate?.goToProfileUserVC(userId: post!.uid!)
     }
     
     func likeImageView_TouchUpInside() {

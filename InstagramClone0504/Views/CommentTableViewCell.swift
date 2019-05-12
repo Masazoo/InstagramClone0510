@@ -7,12 +7,17 @@
 //
 
 import UIKit
+protocol CommentTableViewCellDelegate {
+    func goToProfileUserVC(userId: String)
+}
 
 class CommentTableViewCell: UITableViewCell {
 
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var commentLabel: UILabel!
+    
+    var delegate: CommentTableViewCellDelegate?
     
     var comment: Comment? {
         didSet{
@@ -44,6 +49,14 @@ class CommentTableViewCell: UITableViewCell {
         
         profileImageView.clipsToBounds = true
         profileImageView.layer.cornerRadius = 18
+        
+        let tapGestureForNameLabel = UITapGestureRecognizer(target: self, action: #selector(self.handleSelectNameLabel))
+        nameLabel.addGestureRecognizer(tapGestureForNameLabel)
+        nameLabel.isUserInteractionEnabled = true
+    }
+    
+    func handleSelectNameLabel() {
+        delegate?.goToProfileUserVC(userId: user!.uid!)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

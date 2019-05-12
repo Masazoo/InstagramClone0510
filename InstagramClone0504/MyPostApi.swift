@@ -10,5 +10,14 @@ import Foundation
 import FirebaseDatabase
 
 struct MyPostApi {
+    
     var REF_MYPOSTS = Database.database().reference().child("myPosts")
+    
+    
+    func fetchMyPostsCount(userId: String, completion: @escaping (Int) -> Void) {
+        REF_MYPOSTS.child(userId).observe(.value, with: { (DataSnapshot) in
+            let count = Int(DataSnapshot.childrenCount)
+            completion(count)
+        })
+    }
 }

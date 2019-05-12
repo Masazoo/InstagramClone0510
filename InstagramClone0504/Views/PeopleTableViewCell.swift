@@ -7,6 +7,9 @@
 //
 
 import UIKit
+protocol PeopleTableViewCellDelegate {
+    func goToProfileUserVC(userId: String)
+}
 
 class PeopleTableViewCell: UITableViewCell {
 
@@ -14,6 +17,7 @@ class PeopleTableViewCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var followBtn: UIButton!
     
+    var delegate: PeopleTableViewCellDelegate?
     
     var user: UserModel? {
         didSet{
@@ -71,6 +75,14 @@ class PeopleTableViewCell: UITableViewCell {
         
         profileImageView.clipsToBounds = true
         profileImageView.layer.cornerRadius = 30
+        
+        let tapGestureForNameLabel = UITapGestureRecognizer(target: self, action: #selector(self.handleSelectNameLabel))
+        nameLabel.addGestureRecognizer(tapGestureForNameLabel)
+        nameLabel.isUserInteractionEnabled = true
+    }
+    
+    func handleSelectNameLabel() {
+        delegate?.goToProfileUserVC(userId: user!.uid!)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
