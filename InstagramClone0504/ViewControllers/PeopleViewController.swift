@@ -21,19 +21,17 @@ class PeopleViewController: UIViewController {
         tableView.dataSource = self
         tableView.allowsSelection = false
         
-//        fetchUser()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.users.removeAll()
         fetchUser()
     }
+    
     
     func fetchUser() {
         Api.User.observeUsers { (user) in
             Api.Follow.isFollowing(userId: user.uid!, completion: { (value) in
                 user.isFollowing = value
+                guard Api.User.CURRENT_USER?.uid != user.uid else {
+                    return
+                }
                 self.users.append(user)
                 self.tableView.reloadData()
             })

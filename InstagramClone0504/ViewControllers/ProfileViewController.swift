@@ -21,13 +21,8 @@ class ProfileViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.delegate = self
         
-//        fetchUser()
-        loadPost()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         fetchUser()
+        loadPost()
     }
     
 
