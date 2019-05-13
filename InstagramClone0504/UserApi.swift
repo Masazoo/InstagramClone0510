@@ -21,6 +21,13 @@ class UserApi {
         return nil
     }
     
+    var REF_CURRENT_USER: DatabaseReference? {
+        guard let currentUser = Auth.auth().currentUser else {
+            return nil
+        }
+        return Api.User.REF_USERS.child(currentUser.uid)
+    }
+    
     func observeUsers(completion: @escaping (UserModel) -> Void) {
         REF_USERS.observe(.childAdded, with: { (DataSnapshot) in
             if let dict = DataSnapshot.value as? [String: Any] {

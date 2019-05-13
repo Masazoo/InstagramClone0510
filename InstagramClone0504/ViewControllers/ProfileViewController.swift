@@ -21,8 +21,13 @@ class ProfileViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.delegate = self
         
-        fetchUser()
+//        fetchUser()
         loadPost()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        fetchUser()
     }
     
 
@@ -47,6 +52,14 @@ class ProfileViewController: UIViewController {
         })
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "ProfileToSettingSegue" {
+            let settingVC = segue.destination as! SettingTableViewController
+            settingVC.delegate = self
+        }
+    }
+    
 }
 extension ProfileViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -65,6 +78,7 @@ extension ProfileViewController: UICollectionViewDataSource {
         if let user = self.user {
             headerCell.user = user
         }
+        headerCell.delegate2 = self
         return headerCell
         
     }
@@ -80,5 +94,15 @@ extension ProfileViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.frame.size.width / 3 - 1, height: collectionView.frame.size.width / 3 - 1)
+    }
+}
+extension ProfileViewController: HeaderCollectionReusableViewDelegateSwitchSetting {
+    func goToSettingVC() {
+        self.performSegue(withIdentifier: "ProfileToSettingSegue", sender: nil)
+    }
+}
+extension ProfileViewController: SettingTableViewControllerDelegate {
+    func updateUserInfo() {
+        self.fetchUser()
     }
 }
