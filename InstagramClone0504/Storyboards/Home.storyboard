@@ -149,7 +149,7 @@
         <!--Comment View Controller-->
         <scene sceneID="qBp-5P-k10">
             <objects>
-                <viewController id="BGw-2f-H2g" customClass="CommentViewController" customModule="InstagramClone0504" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CommentViewController" id="BGw-2f-H2g" customClass="CommentViewController" customModule="InstagramClone0504" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8C7-2a-1U0">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -294,6 +294,6 @@
         <image name="share" width="37" height="41"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="upr-nr-wrN"/>
+        <segue reference="A2h-H0-kBA"/>
     </inferredMetricsTieBreakers>
 </document>

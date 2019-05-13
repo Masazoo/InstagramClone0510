@@ -7,11 +7,16 @@
 //
 
 import UIKit
+protocol PhotoCollectionViewCellDelegate {
+    func goToDtailVC(postId: String)
+}
 
 class PhotoCollectionViewCell: UICollectionViewCell {
     
     
     @IBOutlet weak var photoImageView: UIImageView!
+    
+    var delegate: PhotoCollectionViewCellDelegate?
     
     
     var post: Post? {
@@ -31,5 +36,14 @@ class PhotoCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         photoImageView.contentMode = .scaleAspectFill
         photoImageView.clipsToBounds = true
+        
+        let tapGestureForPhotoImageView = UITapGestureRecognizer(target: self, action: #selector(self.handleSelectPhotoImageView))
+        photoImageView.addGestureRecognizer(tapGestureForPhotoImageView)
+        photoImageView.isUserInteractionEnabled = true
     }
+    
+    func handleSelectPhotoImageView() {
+        delegate?.goToDtailVC(postId: post!.postId!)
+    }
+    
 }
