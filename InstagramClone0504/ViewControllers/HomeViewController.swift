@@ -58,15 +58,6 @@ class HomeViewController: UIViewController {
     }
     
     
-    @IBAction func logout_TouchUpInside(_ sender: Any) {
-        AuthService.logout(onSuccess: {
-            let stroyboard = UIStoryboard(name: "Start", bundle: nil)
-            let signInVC = stroyboard.instantiateViewController(withIdentifier: "signInViewController")
-            self.present(signInVC, animated: true, completion: nil)
-        }) { (errorMessage) in
-            ProgressHUD.showError(errorMessage)
-        }
-    }
     
 }
 extension HomeViewController: UITableViewDataSource {

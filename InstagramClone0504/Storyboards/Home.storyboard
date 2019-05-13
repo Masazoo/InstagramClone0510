@@ -127,13 +127,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="fnX-1c-qPH"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Home" id="a0B-l7-xug">
-                        <barButtonItem key="leftBarButtonItem" title="ログアウト" id="tCF-Go-Bvg">
-                            <connections>
-                                <action selector="logout_TouchUpInside:" destination="97W-ON-U6C" id="nbf-ih-PUf"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Home" id="a0B-l7-xug"/>
                     <connections>
                         <outlet property="tableView" destination="K3d-iS-kXX" id="gjN-FY-dT4"/>
                         <segue destination="BGw-2f-H2g" kind="show" identifier="HomeToCommentSegue" id="xcx-VK-46V"/>
@@ -162,7 +156,7 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Umf-eZ-5lG">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="617"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CommentCell" rowHeight="73" id="vvY-Ny-fmB" customClass="CommentTableViewCell" customModule="InstagramClone0504" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="73"/>
@@ -300,6 +294,6 @@
         <image name="share" width="37" height="41"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="A2h-H0-kBA"/>
+        <segue reference="upr-nr-wrN"/>
     </inferredMetricsTieBreakers>
 </document>

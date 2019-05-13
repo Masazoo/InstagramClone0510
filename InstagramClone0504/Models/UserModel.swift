@@ -11,7 +11,7 @@ class UserModel {
     
     var email: String?
     var username: String?
-    var profileImageURL: String?
+    var ProfileImageUrl: String?
     var uid: String?
     var isFollowing: Bool?
     
@@ -21,7 +21,7 @@ extension UserModel {
         let user = UserModel()
         user.email = dict["email"] as? String
         user.username = dict["username"] as? String
-        user.profileImageURL = dict["profileImageURL"] as? String
+        user.ProfileImageUrl = dict["ProfileImageUrl"] as? String
         user.uid = uid
         
         return user

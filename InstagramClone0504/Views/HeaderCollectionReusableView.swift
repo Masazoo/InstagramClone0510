@@ -10,6 +10,9 @@ import UIKit
 protocol HeaderCollectionReusableViewDelegate {
     func updateFollowBtn(user: UserModel)
 }
+protocol HeaderCollectionReusableViewDelegateSwitchSetting {
+    func goToSettingVC()
+}
 
 class HeaderCollectionReusableView: UICollectionReusableView {
     
@@ -21,6 +24,7 @@ class HeaderCollectionReusableView: UICollectionReusableView {
     @IBOutlet weak var editBtn: UIButton!
     
     var delegate: HeaderCollectionReusableViewDelegate?
+    var delegate2: HeaderCollectionReusableViewDelegateSwitchSetting?
     
     var user: UserModel? {
         didSet{
@@ -30,7 +34,7 @@ class HeaderCollectionReusableView: UICollectionReusableView {
     
     func setupUserInfo() {
         nameLabel.text = user?.username
-        if let profileUrlString = user?.profileImageURL {
+        if let profileUrlString = user?.ProfileImageUrl {
             let profileImageUrl = URL(string: profileUrlString)
             profileImageView.sd_setImage(with: profileImageUrl, placeholderImage: UIImage(named: "placeholderImg"))
         }
@@ -50,6 +54,7 @@ class HeaderCollectionReusableView: UICollectionReusableView {
         
         if user?.uid == Api.User.CURRENT_USER?.uid {
             editBtn.setTitle("編集する", for: .normal)
+            editBtn.addTarget(self, action: #selector(self.goToSetting), for: .touchUpInside)
         }else{
             updateStateEditBtn()
         }
@@ -90,6 +95,10 @@ class HeaderCollectionReusableView: UICollectionReusableView {
             user!.isFollowing! = false
             delegate?.updateFollowBtn(user: user!)
         }
+    }
+    
+    func goToSetting() {
+        delegate2?.goToSettingVC()
     }
     
     

@@ -21,6 +21,12 @@ class PeopleViewController: UIViewController {
         tableView.dataSource = self
         tableView.allowsSelection = false
         
+//        fetchUser()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.users.removeAll()
         fetchUser()
     }
     
