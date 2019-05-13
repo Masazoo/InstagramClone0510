@@ -188,6 +188,7 @@
                     <connections>
                         <outlet property="collectionView" destination="3RV-cn-wbL" id="SHj-Qd-jjX"/>
                         <segue destination="Aob-v8-oHd" kind="show" identifier="ProfileToSettingSegue" id="6Ep-Ai-fKu"/>
+                        <segue destination="Ieb-9M-8HX" kind="show" identifier="ProfileToDetailSegue" id="nJW-it-AaE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HvA-ln-ieY" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -430,7 +431,15 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dGz-yv-lyW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3962.4000000000001" y="2795.3523238380812"/>
+            <point key="canvasLocation" x="3009" y="2843"/>
+        </scene>
+        <!--DetailViewController-->
+        <scene sceneID="d7d-fi-ujH">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Discover" referencedIdentifier="DetailViewController" id="Ieb-9M-8HX" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0FS-rc-lOW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4061" y="2638"/>
         </scene>
         <!--Profile User View Controller-->
         <scene sceneID="VLg-HQ-5ip">
@@ -603,7 +612,7 @@
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="0OX-Ur-2vX" id="gGc-4l-wJH"/>
-                        <segue destination="Aob-v8-oHd" kind="show" identifier="ProfileUserToSettingSegue" id="Jav-T1-ew0"/>
+                        <segue destination="Ieb-9M-8HX" kind="show" identifier="ProfileUserToDetailSegue" id="V4Y-8h-LKu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cmj-s7-rVq" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -639,6 +648,6 @@
         <image name="placeholderImg" width="225" height="225"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Jav-T1-ew0"/>
+        <segue reference="V4Y-8h-LKu"/>
     </inferredMetricsTieBreakers>
 </document>

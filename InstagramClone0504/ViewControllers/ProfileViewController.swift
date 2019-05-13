@@ -21,13 +21,8 @@ class ProfileViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.delegate = self
         
-//        fetchUser()
-        loadPost()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         fetchUser()
+        loadPost()
     }
     
 
@@ -53,10 +48,15 @@ class ProfileViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
         if segue.identifier == "ProfileToSettingSegue" {
             let settingVC = segue.destination as! SettingTableViewController
             settingVC.delegate = self
+        }
+        
+        if segue.identifier == "ProfileToDetailSegue" {
+            let postId = sender as! String
+            let detailVC = segue.destination as! DetailViewController
+            detailVC.postId = postId
         }
     }
     
@@ -70,6 +70,7 @@ extension ProfileViewController: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photoCell", for: indexPath) as! PhotoCollectionViewCell
         let post = posts[indexPath.row]
         cell.post = post
+        cell.delegate = self
         return cell
     }
     
@@ -105,4 +106,10 @@ extension ProfileViewController: SettingTableViewControllerDelegate {
     func updateUserInfo() {
         self.fetchUser()
     }
+}
+extension ProfileViewController: PhotoCollectionViewCellDelegate {
+    func goToDtailVC(postId: String) {
+        self.performSegue(withIdentifier: "ProfileToDetailSegue", sender: postId)
+    }
+    
 }

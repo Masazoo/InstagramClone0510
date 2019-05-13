@@ -29,6 +29,9 @@ class SearchViewController: UIViewController {
         Api.User.observeUsers { (user) in
             Api.Follow.isFollowing(userId: user.uid!, completion: { (value) in
                 user.isFollowing = value
+                guard Api.User.CURRENT_USER?.uid != user.uid else {
+                    return
+                }
                 self.users.append(user)
                 self.tableView.reloadData()
             })

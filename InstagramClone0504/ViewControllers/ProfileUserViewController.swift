@@ -23,13 +23,8 @@ class ProfileUserViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.delegate = self
         
-//        fetchUser()
-        loadPost()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         fetchUser()
+        loadPost()
     }
     
     func fetchUser() {
@@ -52,14 +47,14 @@ class ProfileUserViewController: UIViewController {
         })
     }
     
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        if segue.identifier == "ProfileToSettingSegue" {
-            let settingVC = segue.destination as! SettingTableViewController
-            settingVC.delegate = self
+        if segue.identifier == "ProfileUserToDetailSegue" {
+            let postId = sender as! String
+            let detailVC = segue.destination as! DetailViewController
+            detailVC.postId = postId
         }
     }
-    
     
 }
 extension ProfileUserViewController: UICollectionViewDataSource {
@@ -71,6 +66,7 @@ extension ProfileUserViewController: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photoCell", for: indexPath) as! PhotoCollectionViewCell
         let post = posts[indexPath.row]
         cell.post = post
+        cell.delegate = self
         return cell
     }
     
@@ -80,7 +76,6 @@ extension ProfileUserViewController: UICollectionViewDataSource {
             headerCell.user = user
             headerCell.delegate = self.delegate
         }
-        headerCell.delegate2 = self
         return headerCell
         
     }
@@ -98,16 +93,18 @@ extension ProfileUserViewController: UICollectionViewDelegateFlowLayout {
         return CGSize(width: collectionView.frame.size.width / 3 - 1, height: collectionView.frame.size.width / 3 - 1)
     }
 }
-extension ProfileUserViewController: HeaderCollectionReusableViewDelegateSwitchSetting {
-    func goToSettingVC() {
-        self.performSegue(withIdentifier: "ProfileUserToSettingSegue", sender: nil)
-    }
-}
 extension ProfileUserViewController: SettingTableViewControllerDelegate {
     func updateUserInfo() {
         self.fetchUser()
     }
 }
+extension ProfileUserViewController: PhotoCollectionViewCellDelegate {
+    func goToDtailVC(postId: String) {
+        self.performSegue(withIdentifier: "ProfileUserToDetailSegue", sender: postId)
+    }
+    
+}
+
 
 
 
